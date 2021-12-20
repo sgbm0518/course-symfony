@@ -1,8 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello StandardController!{% endblock %}
+{% block title %} {{ parent()}} {% endblock %}
+{% block stylesheets %} {{ parent()}} {% endblock %}
 
 {% block body %}
+
+{{parent()}}
 
 {# <style>
     .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
@@ -21,8 +24,32 @@
     </ul>
 </div> #}
 {#COMENTARIOS EN TWIG#}
-{% set Mivariable = 'Hola mundo' %}
-{{Mivariable}}
+{% set Mivariable = 'Hola mundo' %} {#Declaracion de variable#}
+{{Mivariable}}   {# Imprimir en pantalla#}
+
+
+
+
+<br>
+
+{% if Num1>Num2 %}
+    Numero 1 es mayor
+    {% else %}
+    Numero 2 es mayor
+{% endif %}
+<br>
+{#{{ nombres | lower }} El lower filtro convierte un valor a minúsculas:#}
+{{ nombres | upper }}{# El upper filtro convierte un valor en mayúsculas:#}
+<br>
+<br>
+{% set ArrayNombres = nombres | split (',') %}
+{#Iterar un arreglo en symfony#}
+{% for nombre in ArrayNombres %}
+   * {{ nombre }} <br>
+{% endfor %}
 
 <a href="{{ path('pagina2',{'nombre':'Sergio Giovanni Beltran Madrid'}) }}">Ir a pagina 2</a>
+{% endblock %}
+{% block javascript%}
+    {{parent()}}
 {% endblock %}

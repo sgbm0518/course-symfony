@@ -13,17 +13,25 @@ class StandardController extends AbstractController
      */
     public function index(): Response
     {
-        $num1 = 1;
-        $num2 = 100;
-        $suma = $num1+$num2;
+        $Num1 = 1;
+        $Num2 = 100;
+        $Suma = $Num1+$Num2;
+        $nombres = "sergio, giovanni, julian, david, MAGOLA";
         return $this->render('standard/index.html.twig', 
         
-        array() 
+            array('
+            SumaEntreNumeroUnoYNumero2'=>$Suma,
+            'Num1'=>$Num1,
+            'Num2'=>$Num2,
+            "nombres"=>$nombres
+        )
+
+    );
         
         [
             
             // 'controller_name' => 'Sergio Madrid',
-        ]);
+        ];
     }
 
     /**
