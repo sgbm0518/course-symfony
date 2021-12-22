@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=ProductoRepository::class)
+ * 
  */
 class Producto
 {
@@ -21,6 +22,28 @@ class Producto
      * @ORM\Column(type="string", length=255)
      */
     private $nombre;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $codigo;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Categoria", inversedBy="productos")
+     */
+
+    private $categoria; 
+    /**
+     * Producto contructor.
+     * @param $nombre
+     * @param $codigo
+     */
+
+    public function __construct($nombre=null, $codigo=null)
+    {
+        $this->nombre = $nombre;
+        $this->codigo = $codigo;
+    }
 
     public function getId(): ?int
     {
@@ -37,5 +60,19 @@ class Producto
         $this->nombre = $nombre;
 
         return $this;
+    }
+    /**
+     * @return mixed
+     */
+    public function getCodigo(){
+        return $this->codigo;
+    }
+
+    /**
+     * @param mixed $codigo
+     */
+
+    public function setCodigo($codigo){
+        $this->codigo = $codigo;
     }
 }

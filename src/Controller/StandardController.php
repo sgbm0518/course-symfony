@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Producto;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -41,4 +42,29 @@ class StandardController extends AbstractController
     public function pagina2($nombre){
         return $this->render('standard/pagina2.html.twig',array("parametro1"=>$nombre));
     }
+
+    /**
+     * @Route("/PersistirDatos/", name="Persistir")
+     */
+    public function PersistirDatos(){
+        $entityManager = $this->getDoctrine()->getManager();
+        $producto = new Producto();
+        $producto->setNombre('Equipo');
+        $producto->setCodigo('c-02');
+        $producto->setCategoria();
+        $entityManager->persist($producto);
+        $entityManager->flush();
+        return $this->render('standard/success.html.twig');
+    }
+
+    /**
+     * @Route("/Busquedas/", name="Busquedas")
+     */
+
+     public function Busquedas(){
+        $em = $this->getDostrine()->getManager();
+        $producto = $em->getRepository(Productos::class)->(id);
+        return $this->render('standard/busqueda.html.twig')
+     }
+    
 }
